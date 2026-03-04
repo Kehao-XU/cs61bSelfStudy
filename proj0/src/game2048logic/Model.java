@@ -85,6 +85,11 @@ public class Model {
      * */
     public boolean emptySpaceExists() {
         // TODO: Task 2. Fill in this function.
+        for (int i = 0; i < this.size(); i++) {
+            for (int j = 0; j < this.size(); j++) {
+                if (tile(i, j) == null) return true;
+            }
+        }
         return false;
     }
 
@@ -95,6 +100,11 @@ public class Model {
      */
     public boolean maxTileExists() {
         // TODO: Task 3. Fill in this function.
+        for (int i = 0; i < this.size(); i++) {
+            for (int j = 0; j < this.size(); j++) {
+                if (tile(i,j).value() == this.MAX_PIECE) return true;
+            }
+        }
         return false;
     }
 
@@ -106,6 +116,15 @@ public class Model {
      */
     public boolean atLeastOneMoveExists() {
         // TODO: Fill in this function.
+        if (this.emptySpaceExists()) return true;
+        for (int j = 0; j < this.size() - 1; i++) {
+            for (int i = 0; i < this.size() - 1; j++) {
+                if (tile(i, j).value() == tile(i + 1, j).value() && tile(i, j).value() != 0) return true;
+                if (tile(i, j).value() == tile(i, j + 1).value() && tile(i, j).value() != 0) return true;
+            }
+            i++;
+            if (tile(i, j).value() == tile(i, j + 1).value() && tile(i, j).value() != 0) return true;
+        }
         return false;
     }
 
